@@ -1,31 +1,56 @@
-import os
 import sys
-from dotenv import load_dotenv
+import traceback
+print("=== STARTUP BEGINNING ===", flush=True)
+sys.stdout.flush()
 
-# Load .env for local development
-_env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
-load_dotenv(dotenv_path=_env_path, override=True)
-
-print(f"\n{'='*40}")
-print(f"ANTHROPIC KEY: {'SET ✓' if os.getenv('ANTHROPIC_API_KEY') else 'MISSING ✗'}")
-print(f"GROQ KEY:      {'SET ✓' if os.getenv('GROQ_API_KEY') else 'MISSING ✗'}")
-print(f"DATABASE URL:  {'SET ✓' if os.getenv('DATABASE_URL') else 'MISSING ✗'}")
-print(f"{'='*40}\n")
-
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, JSONResponse
-import uvicorn
+import sys
+import os
 import traceback
 
-from routes import chat, applications, documents
-from database.connection import engine, Base
+print("=== STEP 1: Basic imports done ===", flush=True)
 
-# Create tables
-Base.metadata.create_all(bind=engine)
+try:
+    from dotenv import load_dotenv
+    _env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
+    load_dotenv(dotenv_path=_env_path, override=True)
+    print(f"=== STEP 2: Env loaded ===", flush=True)
+    print(f"GROQ KEY: {'SET' if os.getenv('GROQ_API_KEY') else 'MISSING'}", flush=True)
+    print(f"DB URL:   {'SET' if os.getenv('DATABASE_URL') else 'MISSING'}", flush=True)
+except Exception as e:
+    print(f"ENV ERROR: {e}", flush=True)
 
-# Auto-seed sample applications
+try:
+    from fastapi import FastAPI, Request
+    from fastapi.middleware.cors import CORSMiddleware
+    from fastapi.staticfiles import StaticFiles
+    from fastapi.responses import FileResponse, JSONResponse
+    import uvicorn
+    print("=== STEP 3: FastAPI imported ===", flush=True)
+except Exception as e:
+    print(f"FASTAPI IMPORT ERROR: {e}", flush=True)
+    sys.exit(1)
+
+try:
+    from database.connection import engine, Base
+    print("=== STEP 4: Database imported ===", flush=True)
+except Exception as e:
+    print(f"DATABASE IMPORT ERROR: {e}", flush=True)
+    sys.exit(1)
+
+try:
+    from routes import chat, applications, documents
+    print("=== STEP 5: Routes imported ===", flush=True)
+except Exception as e:
+    print(f"ROUTES IMPORT ERROR: {e}", flush=True)
+    traceback.print_exc()
+    sys.exit(1)
+
+try:
+    Base.metadata.create_all(bind=engine)
+    print("=== STEP 6: Tables created ===", flush=True)
+except Exception as e:
+    print(f"TABLE CREATION ERROR: {e}", flush=True)
+
 try:
     from database.connection import SessionLocal
     from models.db_models import Application, ApplicationStatus
@@ -50,26 +75,21 @@ try:
         ]
         _db.add_all(_apps)
         _db.commit()
-        print("✓ Sample data seeded")
+        print("=== STEP 7: Sample data seeded ===", flush=True)
+    else:
+        print("=== STEP 7: Data already exists ===", flush=True)
     _db.close()
 except Exception as e:
-    print(f"Seed note: {e}")
+    print(f"SEED ERROR: {e}", flush=True)
 
-# Create FastAPI app
-app = FastAPI(
-    title="Greenfield University Chatbot API",
-    version="1.0.0"
-)
+print("=== STEP 8: Creating FastAPI app ===", flush=True)
 
-# Global error handler
+app = FastAPI(title="Greenfield University Chatbot API", version="1.0.0")
+
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
-    error_msg = traceback.format_exc()
-    print(f"GLOBAL ERROR: {error_msg}")
-    return JSONResponse(
-        status_code=500,
-        content={"detail": str(exc)}
-    )
+    print(f"REQUEST ERROR: {traceback.format_exc()}", flush=True)
+    return JSONResponse(status_code=500, content={"detail": str(exc)})
 
 app.add_middleware(
     CORSMiddleware,
@@ -79,13 +99,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include routers
 app.include_router(chat.router, prefix="/api/chat", tags=["Chat"])
 app.include_router(applications.router, prefix="/api/applications", tags=["Applications"])
 app.include_router(documents.router, prefix="/api/documents", tags=["Documents"])
 
-# Serve frontend
-frontend_path = os.path.join(os.path.dirname(__file__), "..", "frontend")
+print("=== STEP 9: Routers registered ===", flush=True)
+
+frontend_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "frontend")
+print(f"Frontend path: {frontend_path}", flush=True)
+print(f"Frontend exists: {os.path.exists(frontend_path)}", flush=True)
+
 if os.path.exists(frontend_path):
     assets_path = os.path.join(frontend_path, "assets")
     if os.path.exists(assets_path):
@@ -113,29 +136,32 @@ if os.path.exists(frontend_path):
 
 @app.get("/api/health")
 async def health_check():
-    return {"status": "healthy", "service": "Greenfield University Chatbot"}
+    return {"status": "healthy"}
 
-# Auto-ingest documents on startup
 @app.on_event("startup")
 async def startup_ingest():
+    print("=== STEP 10: Startup ingestion ===", flush=True)
     try:
         from rag.vector_store import get_vector_store
         from rag.ingestion import load_all_documents
         from rag.chunker import chunk_documents
         vs = get_vector_store()
         if len(vs.chunks) == 0:
-            print("Auto-ingesting documents...")
             docs = load_all_documents()
             if docs:
                 chunks = chunk_documents(docs)
                 vs.build_index(chunks)
-                print(f"✓ Ingested {len(chunks)} chunks")
+                print(f"✓ Ingested {len(chunks)} chunks", flush=True)
             else:
-                print("No documents found to ingest")
+                print("No docs found", flush=True)
+        else:
+            print(f"✓ {len(vs.chunks)} chunks already loaded", flush=True)
     except Exception as e:
-        print(f"Ingestion note: {e}")
+        print(f"Ingestion warning: {e}", flush=True)
+        traceback.print_exc()
+
+print("=== STEP 11: App ready ===", flush=True)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run("main:app", host="0.0.0.0", port=port)
-```
