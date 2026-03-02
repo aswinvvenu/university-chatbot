@@ -1,0 +1,36 @@
+Category,Item,Amount (USD),Frequency,Notes
+Undergraduate Tuition,In-State Tuition,14500,Per Year,California residents
+Undergraduate Tuition,Out-of-State Tuition,32000,Per Year,Non-California residents
+Undergraduate Tuition,International Student Tuition,34500,Per Year,Includes international fee
+Graduate Tuition,General Graduate Tuition,18500,Per Year,Varies by program
+Graduate Tuition,Law School (JD),28000,Per Year,
+Graduate Tuition,Medical School (MD),45000,Per Year,Starting 2025
+Graduate Tuition,Part-time (per credit),1540,Per Credit Hour,
+Housing,Traditional Double Room,6200,Per Year,Shared room
+Housing,Suite-Style Single,8400,Per Year,Private room in suite
+Housing,Apartment Style,9800,Per Year,Semi-private apartment
+Housing,Off-campus estimate,12000,Per Year,Estimate only
+Dining,Standard Meal Plan (19 meals/week),5200,Per Year,Required for freshmen
+Dining,Flex Meal Plan (14 meals/week),4600,Per Year,
+Dining,Commuter Plan (5 meals/week),2100,Per Year,
+Fees,Student Activity Fee,450,Per Year,
+Fees,Technology Fee,350,Per Year,
+Fees,Health Services Fee,250,Per Year,
+Fees,Recreation Center Fee,150,Per Year,
+Fees,Transportation Fee,150,Per Year,Campus shuttle access
+Fees,Lab Fee,100,Per Course,Science/engineering labs only
+Books & Supplies,Estimated Books,1200,Per Year,Estimate
+Books & Supplies,Laptop Requirement,800,One Time,Minimum specs required
+Application Fees,Undergraduate Application,75,One Time,Waived for first-gen students
+Application Fees,Graduate Application,95,One Time,
+Application Fees,Law School Application,110,One Time,
+Scholarships,Presidential Scholarship,-14500,Per Year,Full in-state tuition; 4.0 GPA + SAT 1500+
+Scholarships,Dean's Scholarship,-7250,Per Year,50% tuition; 3.8 GPA + SAT 1350+
+Scholarships,Excellence Award,-5000,Per Year,3.5 GPA + SAT 1200+
+Scholarships,Athletic Scholarship,Varies,Per Year,Contact athletics@greenfield.edu
+Scholarships,Need-Based Grant,8500,Per Year,Average award; FAFSA required
+Financial Aid,Federal Pell Grant,Up to 7395,Per Year,Need-based; federal program
+Financial Aid,Federal Direct Loan,5500,Per Year,Subsidized; freshmen limit
+Financial Aid,Federal Work-Study,3000,Per Year,Average earnings
+Payment,Semester Payment Plan,No Fee,Per Semester,Pay in installments
+Payment,Monthly Payment Plan,50 Setup Fee,Per Year,12 monthly installments

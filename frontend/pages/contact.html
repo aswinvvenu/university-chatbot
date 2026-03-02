@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Greenfield University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><div class="logo-icon">GU</div><span>Greenfield University</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a><a href="/programs">Programs</a><a href="/admissions">Admissions</a><a href="/faq">FAQ</a><a href="/contact">Contact</a>
+      </div>
+      <a href="/admissions" class="btn-apply">Apply Now</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Contact Us</h1>
+    <p>We're here to help. Reach out anytime.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <h2 style="font-family:'Playfair Display',serif;color:#1a3c5e;margin-bottom:1.5rem;">Send Us a Message</h2>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" placeholder="John Smith" required />
+        </div>
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" placeholder="john@email.com" required />
+        </div>
+        <div class="form-group">
+          <label>Department</label>
+          <select>
+            <option>Admissions</option>
+            <option>Financial Aid</option>
+            <option>Academic Programs</option>
+            <option>Housing</option>
+            <option>International Students</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Application ID (if applicable)</label>
+          <input type="text" placeholder="APP-2024-001" />
+        </div>
+        <div class="form-group">
+          <label>Message *</label>
+          <textarea placeholder="How can we help you?" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message →</button>
+        <div id="form-success" style="display:none;padding:1rem;background:#d4edda;border-radius:8px;color:#155724;margin-top:0.5rem;">
+          ✓ Message sent! We'll get back to you within 2 business days.
+        </div>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h3>Get in Touch</h3>
+      
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📍</div>
+        <div class="contact-info-text">
+          <strong>Main Campus</strong>
+          <p>100 University Avenue<br />Maplewood, CA 94025</p>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon">📞</div>
+        <div class="contact-info-text">
+          <strong>Main Line</strong>
+          <p>+1 (555) 234-5678<br />Mon–Fri, 8:30 AM – 5:00 PM PST</p>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon">✉️</div>
+        <div class="contact-info-text">
+          <strong>Email</strong>
+          <p>admissions@greenfield.edu<br />info@greenfield.edu</p>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon">🎓</div>
+        <div class="contact-info-text">
+          <strong>Financial Aid</strong>
+          <p>finaid@greenfield.edu<br />+1 (555) 234-5680</p>
+        </div>
+      </div>
+
+      <div class="contact-info-item">
+        <div class="contact-info-icon">🌍</div>
+        <div class="contact-info-text">
+          <strong>International Students</strong>
+          <p>iso@greenfield.edu<br />+1 (555) 234-5684</p>
+        </div>
+      </div>
+
+      <div style="background:#f0f4f8;border-radius:12px;padding:1.5rem;margin-top:1.5rem;">
+        <strong style="color:#1a3c5e;">💬 Quick Answers</strong>
+        <p style="font-size:0.9rem;color:#6b7280;margin-top:0.5rem;">For instant answers about programs, fees, or application status, use our AI assistant below — available 24/7!</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><div class="logo-icon">GU</div><span>Greenfield University</span></div>
+          <p>100 University Avenue<br />Maplewood, CA 94025</p>
+        </div>
+        <div class="footer-links"><h4>Academics</h4><a href="/programs">Programs</a></div>
+        <div class="footer-links"><h4>Admissions</h4><a href="/admissions">Apply</a></div>
+        <div class="footer-links"><h4>Support</h4><a href="/faq">FAQ</a><a href="/contact">Contact</a></div>
+      </div>
+      <div class="footer-bottom"><p>© 2024 Greenfield University. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="chatbot-widget">
+    <div id="chat-window" class="chat-hidden">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">GU</div>
+          <div><strong>GreenBot</strong><span class="chat-status">● Online</span></div>
+        </div>
+        <button id="chat-close">✕</button>
+      </div>
+      <div id="chat-messages">
+        <div class="msg bot-msg">
+          <div class="msg-bubble">👋 Need a quick answer? I can help with admissions, programs, fees, and application status!</div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask me anything..." />
+        <button id="chat-send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+        </button>
+      </div>
+      <div class="chat-footer">Powered by AI · Strict university knowledge only</div>
+    </div>
+    <button id="chat-toggle">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    </button>
+  </div>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-success').style.display = 'block';
+      e.target.reset();
+    }
+  </script>
+  <script src="/static/chatbot.js"></script>
+</body>
+</html>

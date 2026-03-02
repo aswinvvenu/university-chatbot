@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Programs | Greenfield University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><div class="logo-icon">GU</div><span>Greenfield University</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a><a href="/programs">Programs</a><a href="/admissions">Admissions</a><a href="/faq">FAQ</a><a href="/contact">Contact</a>
+      </div>
+      <a href="/admissions" class="btn-apply">Apply Now</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Academic Programs</h1>
+    <p>120+ undergraduate, graduate, and doctoral programs across 8 colleges</p>
+  </div>
+
+  <div class="content-section" style="max-width:1100px;">
+    <!-- Filter tabs -->
+    <div style="display:flex;gap:0.75rem;margin-bottom:2rem;flex-wrap:wrap;">
+      <button class="tab-btn active" onclick="filterPrograms('all')">All Programs</button>
+      <button class="tab-btn" onclick="filterPrograms('undergrad')">Undergraduate</button>
+      <button class="tab-btn" onclick="filterPrograms('graduate')">Graduate</button>
+      <button class="tab-btn" onclick="filterPrograms('doctoral')">Doctoral</button>
+    </div>
+
+    <!-- Engineering College -->
+    <div class="info-card" style="margin-bottom:1.5rem;">
+      <h3>🖥️ College of Engineering</h3>
+      <table class="programs-table" style="margin-top:1rem;">
+        <thead>
+          <tr><th>Program</th><th>Degree</th><th>Duration</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Computer Science</td><td>BS</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Data Science</td><td>BS</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Electrical Engineering</td><td>BS</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Mechanical Engineering</td><td>BS</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Civil Engineering</td><td>BS</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Computer Science</td><td>MS</td><td>2 years</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+          <tr><td>Artificial Intelligence</td><td>MS</td><td>2 years</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+          <tr><td>Cybersecurity</td><td>MS</td><td>1.5 years</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Business College -->
+    <div class="info-card" style="margin-bottom:1.5rem;">
+      <h3>📊 College of Business — AACSB Accredited (#42 Nationally)</h3>
+      <table class="programs-table" style="margin-top:1rem;">
+        <thead>
+          <tr><th>Program</th><th>Degree</th><th>Duration</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Business Administration</td><td>BBA</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Accounting</td><td>BBA</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Finance</td><td>BBA</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Marketing</td><td>BBA</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>MBA (Full-time)</td><td>MBA</td><td>2 years</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+          <tr><td>MBA (Online)</td><td>MBA</td><td>2–3 years</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+          <tr><td>Business Analytics</td><td>MS</td><td>1.5 years</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Health Sciences -->
+    <div class="info-card" style="margin-bottom:1.5rem;">
+      <h3>🏥 College of Health Sciences</h3>
+      <table class="programs-table" style="margin-top:1rem;">
+        <thead>
+          <tr><th>Program</th><th>Degree</th><th>Duration</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Nursing (BSN)</td><td>BSN</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Public Health</td><td>BS</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Kinesiology</td><td>BS</td><td>4 years</td><td><span class="badge">Undergraduate</span></td></tr>
+          <tr><td>Public Health</td><td>MPH</td><td>2 years</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+          <tr><td>Physical Therapy</td><td>DPT</td><td>3 years</td><td><span class="badge" style="background:#e8d4ff;color:#4a0a7a;">Doctoral</span></td></tr>
+          <tr><td>Medicine (MD)</td><td>MD</td><td>4 years</td><td><span class="badge" style="background:#e8d4ff;color:#4a0a7a;">Doctoral — Opens 2025</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Law -->
+    <div class="info-card" style="margin-bottom:1.5rem;">
+      <h3>⚖️ School of Law</h3>
+      <table class="programs-table" style="margin-top:1rem;">
+        <thead>
+          <tr><th>Program</th><th>Degree</th><th>Duration</th><th>Type</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Juris Doctor</td><td>JD</td><td>3 years</td><td><span class="badge" style="background:#e8d4ff;color:#4a0a7a;">Doctoral</span></td></tr>
+          <tr><td>JD (Evening Part-time)</td><td>JD</td><td>4 years</td><td><span class="badge" style="background:#e8d4ff;color:#4a0a7a;">Doctoral</span></td></tr>
+          <tr><td>International Law</td><td>LLM</td><td>1 year</td><td><span class="badge" style="background:#d4e8ff;color:#0a3d7a;">Graduate</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-card" style="border-left-color:#d4a017;background:#fffdf0;">
+      <h3>📚 Not sure which program to choose?</h3>
+      <p>Ask our AI assistant (bottom right) for personalized program recommendations based on your interests and career goals!</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><div class="logo-icon">GU</div><span>Greenfield University</span></div>
+          <p>100 University Avenue<br />Maplewood, CA 94025</p>
+        </div>
+        <div class="footer-links"><h4>Academics</h4><a href="/programs">Programs</a><a href="#">Research</a></div>
+        <div class="footer-links"><h4>Admissions</h4><a href="/admissions">Apply</a><a href="/admissions">Financial Aid</a></div>
+        <div class="footer-links"><h4>Support</h4><a href="/faq">FAQ</a><a href="/contact">Contact</a></div>
+      </div>
+      <div class="footer-bottom"><p>© 2024 Greenfield University. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="chatbot-widget">
+    <div id="chat-window" class="chat-hidden">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">GU</div>
+          <div><strong>GreenBot</strong><span class="chat-status">● Online</span></div>
+        </div>
+        <button id="chat-close">✕</button>
+      </div>
+      <div id="chat-messages">
+        <div class="msg bot-msg">
+          <div class="msg-bubble">👋 Ask me about our programs, requirements, or career outcomes!</div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask about programs..." />
+        <button id="chat-send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+        </button>
+      </div>
+      <div class="chat-footer">Powered by AI · Answers based on university documents</div>
+    </div>
+    <button id="chat-toggle">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    </button>
+  </div>
+
+  <style>
+    .tab-btn {
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      border: 1.5px solid #2d6a9f;
+      background: transparent;
+      color: #2d6a9f;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: #2d6a9f;
+      color: white;
+    }
+  </style>
+  <script src="/static/chatbot.js"></script>
+</body>
+</html>

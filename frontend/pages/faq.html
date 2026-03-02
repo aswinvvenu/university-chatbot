@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Greenfield University</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="logo"><div class="logo-icon">GU</div><span>Greenfield University</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a><a href="/programs">Programs</a><a href="/admissions">Admissions</a><a href="/faq">FAQ</a><a href="/contact">Contact</a>
+      </div>
+      <a href="/admissions" class="btn-apply">Apply Now</a>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <h1>Frequently Asked Questions</h1>
+    <p>Can't find an answer? Ask our AI assistant below!</p>
+  </div>
+
+  <div class="content-section">
+    <h2 style="font-family:'Playfair Display',serif;color:#1a3c5e;margin-bottom:1.5rem;">Admissions</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">What is the acceptance rate? <span>+</span></div>
+      <div class="faq-answer">Greenfield University has an acceptance rate of approximately 42%. We consider the whole student, not just grades and test scores.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">Is the SAT/ACT required? <span>+</span></div>
+      <div class="faq-answer">Greenfield is test-optional for 2024–2025. Scores may be submitted and will be considered holistically, but are not required.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">Can I defer my admission? <span>+</span></div>
+      <div class="faq-answer">Yes! Admitted students may defer enrollment for one semester or one full year. Submit your request within 30 days of acceptance. A $500 deferral deposit is required.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">How do I check my application status? <span>+</span></div>
+      <div class="faq-answer">Use our AI chatbot (bottom right)! Just type your Application ID (format: APP-XXXX-XXX) and it will instantly retrieve your current status from our system.</div>
+    </div>
+
+    <h2 style="font-family:'Playfair Display',serif;color:#1a3c5e;margin:2.5rem 0 1.5rem;">Financial Aid</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">When is the FAFSA deadline? <span>+</span></div>
+      <div class="faq-answer">We recommend submitting by February 15 for priority consideration. FAFSA School Code: 002198. Late applications are accepted but funding may be limited.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">Are scholarships renewable? <span>+</span></div>
+      <div class="faq-answer">Most merit scholarships are renewable for four years, provided students maintain the required GPA (typically 3.0+ for continued eligibility).</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">Can I work on campus? <span>+</span></div>
+      <div class="faq-answer">Yes! Work-study positions allow up to 20 hours per week during the semester. Average earnings: $3,000/year. Common positions include library assistant, lab aide, and office worker.</div>
+    </div>
+
+    <h2 style="font-family:'Playfair Display',serif;color:#1a3c5e;margin:2.5rem 0 1.5rem;">Academic & Campus Life</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">What is the minimum GPA to stay enrolled? <span>+</span></div>
+      <div class="faq-answer">Students must maintain a cumulative GPA of 2.0 or higher. Those below 2.0 are placed on academic probation for one semester.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">How many credits to graduate? <span>+</span></div>
+      <div class="faq-answer">120 credit hours are required: 40 credits general education, 40–60 credits in the major, and 20–40 electives. Exact requirements vary by program.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">Is Greenfield a dry campus? <span>+</span></div>
+      <div class="faq-answer">Yes. Greenfield University is a dry campus. Possession or consumption of alcohol is prohibited for all students regardless of age. Violations result in disciplinary action.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question" onclick="toggle(this)">What healthcare services are available? <span>+</span></div>
+      <div class="faq-answer">The Student Health Center offers primary care, mental health counseling, and pharmacy services. Hours: Mon–Fri 8 AM–6 PM, urgent care Sat–Sun 10 AM–4 PM.</div>
+    </div>
+
+    <div class="info-card" style="margin-top:3rem;border-left-color:#d4a017;background:#fffdf0;">
+      <h3>💬 Still have questions?</h3>
+      <p>Our AI assistant (bottom right) can answer detailed questions about programs, fees, policies, and more — 24/7!</p>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo"><div class="logo-icon">GU</div><span>Greenfield University</span></div>
+          <p>100 University Avenue<br />Maplewood, CA 94025</p>
+        </div>
+        <div class="footer-links"><h4>Academics</h4><a href="/programs">Programs</a></div>
+        <div class="footer-links"><h4>Admissions</h4><a href="/admissions">Apply</a></div>
+        <div class="footer-links"><h4>Support</h4><a href="/faq">FAQ</a><a href="/contact">Contact</a></div>
+      </div>
+      <div class="footer-bottom"><p>© 2024 Greenfield University. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <div id="chatbot-widget">
+    <div id="chat-window" class="chat-hidden">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="chat-avatar">GU</div>
+          <div><strong>GreenBot</strong><span class="chat-status">● Online</span></div>
+        </div>
+        <button id="chat-close">✕</button>
+      </div>
+      <div id="chat-messages">
+        <div class="msg bot-msg">
+          <div class="msg-bubble">👋 Have a question not answered in the FAQ? Ask me!</div>
+        </div>
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Ask your question..." />
+        <button id="chat-send">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+        </button>
+      </div>
+      <div class="chat-footer">Powered by AI · Strict university knowledge only</div>
+    </div>
+    <button id="chat-toggle">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    </button>
+  </div>
+
+  <script>
+    function toggle(el) {
+      const answer = el.nextElementSibling;
+      const isOpen = answer.style.display === 'block';
+      document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+      document.querySelectorAll('.faq-question span').forEach(s => s.textContent = '+');
+      if (!isOpen) {
+        answer.style.display = 'block';
+        el.querySelector('span').textContent = '−';
+      }
+    }
+  </script>
+  <script src="/static/chatbot.js"></script>
+</body>
+</html>
