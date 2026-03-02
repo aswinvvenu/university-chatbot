@@ -2,30 +2,22 @@ import os
 import sys
 from dotenv import load_dotenv
 
-# Force load .env from project root
+# Load .env for local development
 _env_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".env")
-_loaded = load_dotenv(dotenv_path=_env_path, override=True)
+load_dotenv(dotenv_path=_env_path, override=True)
 
-# Debug — will print on startup
 print(f"\n{'='*40}")
-print(f"ENV FILE PATH: {_env_path}")
-print(f"ENV FILE EXISTS: {os.path.exists(_env_path)}")
-print(f"ENV LOADED: {_loaded}")
 print(f"ANTHROPIC KEY: {'SET ✓' if os.getenv('ANTHROPIC_API_KEY') else 'MISSING ✗'}")
-print(f"GEMINI KEY:    {'SET ✓' if os.getenv('GEMINI_API_KEY') else 'MISSING ✗'}")
+print(f"GROQ KEY:      {'SET ✓' if os.getenv('GROQ_API_KEY') else 'MISSING ✗'}")
 print(f"DATABASE URL:  {'SET ✓' if os.getenv('DATABASE_URL') else 'MISSING ✗'}")
 print(f"{'='*40}\n")
 
-
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
-import traceback
+from fastapi.responses import FileResponse, JSONResponse
 import uvicorn
-import os
+import traceback
 
 from routes import chat, applications, documents
 from database.connection import engine, Base
@@ -33,7 +25,7 @@ from database.connection import engine, Base
 # Create tables
 Base.metadata.create_all(bind=engine)
 
-# Auto-seed sample applications on first run
+# Auto-seed sample applications
 try:
     from database.connection import SessionLocal
     from models.db_models import Application, ApplicationStatus
@@ -63,37 +55,22 @@ try:
 except Exception as e:
     print(f"Seed note: {e}")
 
-# Auto-ingest documents on startup
-@app.on_event("startup")
-async def startup_ingest():
-    try:
-        from rag.vector_store import get_vector_store
-        from rag.ingestion import load_all_documents
-        from rag.chunker import chunk_documents
-        vs = get_vector_store()
-        if len(vs.chunks) == 0:
-            print("Auto-ingesting documents...")
-            docs = load_all_documents()
-            if docs:
-                chunks = chunk_documents(docs)
-                vs.build_index(chunks)
-                print(f"✓ Ingested {len(chunks)} chunks")
-    except Exception as e:
-        print(f"Ingestion note: {e}")
-
+# Create FastAPI app
 app = FastAPI(
     title="Greenfield University Chatbot API",
-    description="AI-powered chatbot with RAG for Greenfield University",
     version="1.0.0"
 )
+
+# Global error handler
 @app.exception_handler(Exception)
 async def global_exception_handler(request: Request, exc: Exception):
     error_msg = traceback.format_exc()
-    print(f"\n{'='*50}\nGLOBAL ERROR:\n{error_msg}\n{'='*50}")
+    print(f"GLOBAL ERROR: {error_msg}")
     return JSONResponse(
         status_code=500,
-        content={"detail": str(exc), "traceback": error_msg}
+        content={"detail": str(exc)}
     )
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -107,10 +84,12 @@ app.include_router(chat.router, prefix="/api/chat", tags=["Chat"])
 app.include_router(applications.router, prefix="/api/applications", tags=["Applications"])
 app.include_router(documents.router, prefix="/api/documents", tags=["Documents"])
 
-# Serve frontend static files
+# Serve frontend
 frontend_path = os.path.join(os.path.dirname(__file__), "..", "frontend")
 if os.path.exists(frontend_path):
-    app.mount("/static", StaticFiles(directory=os.path.join(frontend_path, "assets")), name="static")
+    assets_path = os.path.join(frontend_path, "assets")
+    if os.path.exists(assets_path):
+        app.mount("/static", StaticFiles(directory=assets_path), name="static")
 
     @app.get("/")
     async def serve_index():
@@ -136,6 +115,27 @@ if os.path.exists(frontend_path):
 async def health_check():
     return {"status": "healthy", "service": "Greenfield University Chatbot"}
 
+# Auto-ingest documents on startup
+@app.on_event("startup")
+async def startup_ingest():
+    try:
+        from rag.vector_store import get_vector_store
+        from rag.ingestion import load_all_documents
+        from rag.chunker import chunk_documents
+        vs = get_vector_store()
+        if len(vs.chunks) == 0:
+            print("Auto-ingesting documents...")
+            docs = load_all_documents()
+            if docs:
+                chunks = chunk_documents(docs)
+                vs.build_index(chunks)
+                print(f"✓ Ingested {len(chunks)} chunks")
+            else:
+                print("No documents found to ingest")
+    except Exception as e:
+        print(f"Ingestion note: {e}")
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run("main:app", host="0.0.0.0", port=port)
+```
